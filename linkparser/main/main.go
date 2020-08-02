@@ -14,7 +14,8 @@ var exampleHtml = `
 	<a href="/other-page">
 		A link to another page
 		<a href="/bad">
-			A bad link
+			Not really a nested link
+			Just a sibling link
 		</a>
 	</a>
 	<div>
@@ -26,6 +27,12 @@ var exampleHtml = `
 				A another bad link
 			</a>
 		</span>
+	</a>
+	<a href="/third-page">
+		Third
+		<a href="/fourth-bad">
+			Fourth - A sibling of Third
+		</a>
 	</a>
 	</div>
 	</body>

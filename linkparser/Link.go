@@ -34,6 +34,7 @@ func findLink(n *html.Node) []*link{
 	if n.Type == html.ElementNode && n.Data == "a" {
 		for _, a := range n.Attr {
 			if a.Key == "href" {
+				println(n.Data)
 				return []*link{NewLink(a.Val, findLinkText(n))}
 			}
 		}
@@ -56,9 +57,6 @@ func findLinkText(n *html.Node) string {
 
 	text := ""
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		if c.Data == "a" {
-			return ""
-		}
 		text += findLinkText(c)
 	}
 
