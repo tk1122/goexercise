@@ -6,22 +6,21 @@ import (
 	"strings"
 )
 
-// Link represent a link (<a href="..." > text </a>) in a HTML document
-type link struct {
-	href string
-	text string
+type Link struct {
+	Href string
+	Text string
 }
 
-func NewLink(href, text string) *link {
-	return &link{
-		href: href,
-		text: text,
+func NewLink(href, text string) *Link {
+	return &Link{
+		Href: href,
+		Text: text,
 	}
 }
 
 // Parse will take a HTML document and return a slice of links
 // parsed from it
-func Parse(r io.Reader) ([]*link, error) {
+func Parse(r io.Reader) ([]*Link, error) {
 	root, err := html.Parse(r)
 	if err != nil {
 		return nil, err
@@ -30,16 +29,15 @@ func Parse(r io.Reader) ([]*link, error) {
 	return findLink(root), nil
 }
 
-func findLink(n *html.Node) []*link{
+func findLink(n *html.Node) []*Link {
 	if n.Type == html.ElementNode && n.Data == "a" {
 		for _, a := range n.Attr {
 			if a.Key == "href" {
-				println(n.Data)
-				return []*link{NewLink(a.Val, findLinkText(n))}
+				return []*Link{NewLink(a.Val, findLinkText(n))}
 			}
 		}
 	}
-	var links []*link
+	var links []*Link
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
 		links = append(links, findLink(c)...)
 	}
