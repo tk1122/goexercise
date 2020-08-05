@@ -4,6 +4,7 @@ go 1.12
 
 require (
 	github.com/boltdb/bolt v1.3.1
+	github.com/lib/pq v1.8.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/spf13/cobra v1.0.0
